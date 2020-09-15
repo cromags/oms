@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en"  xmlns:th="http://www.thymeleaf.org" >
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="../static/css/bootstrap-3.3.4-dist/css/bootstrap.min.css" rel="stylesheet" media="screen"
+          th:href="@{/css/bootstrap-3.3.4-dist/css/bootstrap.min.css}"/>
+</head>
+<body>
+<div class="container">
+    <h2>Edytuj klienta</h2>
+
+    <form class="form-horizontal" th:object="${client}" th:action="@{/doEdit}" method="post">
+
+        <div th:if="${#fields.hasErrors('*')}" class="alert alert-danger">
+            <p>Błąd</p>
+        </div>
+
+
+        <div class="form-group">
+            <label class="col-sm-2 control-label">Imię:</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" th:field="*{firstName}" />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-sm-2 control-label">Nazwisko:</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" th:field="*{lastName}" />
+            </div>
+        </div>
+
+        <div class="form-group" th:class="${#fields.hasErrors('zipCode')} ? 'form-group has-error' : 'form-group'" >
+            <label class="col-sm-2 control-label">Kod pocztowy:</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" th:field="*{zipCode}" th:errorclass="has-error" />
+                <span class="help-block" th:if="${#fields.hasErrors('zipCode')}">
+                        <p th:text="${'Pole wymagane'}"></p>
+                    </span>
+            </div>
+        </div>
+
+        <div class="form-group" th:class="${#fields.hasErrors('city')} ? 'form-group has-error' : 'form-group'" >
+            <label class="col-sm-2 control-label">Miasto:</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" th:field="*{city}" th:errorclass="has-error" />
+                <span class="help-block" th:if="${#fields.hasErrors('city')}">
+                        <p th:text="${'Pole wymagane'}"></p>
+                    </span>
+            </div>
+        </div>
+
+        <div class="form-group" th:class="${#fields.hasErrors('address')} ? 'form-group has-error' : 'form-group'" >
+            <label class="col-sm-2 control-label">Adres:</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" th:field="*{address}" th:errorclass="has-error" />
+                <span class="help-block" th:if="${#fields.hasErrors('address')}">
+                        <p th:text="${'Pole wymagane'}"></p>
+                    </span>
+            </div>
+        </div>
+
+        <div class="form-group" th:class="${#fields.hasErrors('tel')} ? 'form-group has-error' : 'form-group'" >
+            <label class="col-sm-2 control-label">Telefon:</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" th:field="*{tel}" th:errorclass="has-error" />
+                <span class="help-block" th:if="${#fields.hasErrors('tel')}">
+                        <p th:text="${'Pole wymagane'}"></p>
+                    </span>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-sm-2 control-label">Email:</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" th:field="*{email}" />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-sm-2 control-label">Uwagi:</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" th:field="*{comments}" />
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            <div class="col-sm-10">
+                <!-- I don't want to show this value on form,
+                but I need it to proceed processEditClient() method in ClientController class -->
+                <input type="hidden" class="form-control" th:field="*{id}" />
+            </div>
+        </div>
+
+        <div class="row">
+            <button type="submit" class="btn btn-default">Edytuj</button>
+            <button onclick="location.href='/index'" type="button" class="btn btn-default">
+                Anuluj</button>
+        </div>
+    </form>
+</div>
+</body>
+</html>

@@ -1,10 +1,61 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" >
 <head>
     <meta charset="UTF-8">
-    <title>$Title$</title>
+    <title>Title</title>
+
+    <link href="../static/css/bootstrap-3.3.4-dist/css/bootstrap.min.css" rel="stylesheet" media="screen"
+          th:href="@{/css/bootstrap-3.3.4-dist/css/bootstrap.min.css}"/>
+
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        th, td {
+            text-align: left;
+            padding: 8px;
+        }
+
+        tr:nth-child(even){background-color: #f2f2f2}
+
+        th {
+            background-color: #fe6a00;
+            color: white;
+        }
+    </style>
+
 </head>
 <body>
-$END$
+<h2>Klienci (<span style="color: #fe6a00" th:text="${clients.size()}"></span>)</h2>
+<table>
+    <tr>
+        <th>Imię</th>
+        <th>Nazwisko</th>
+        <th>Kod pocztowy</th>
+        <th>Miasto</th>
+        <th>Adres</th>
+        <th>Telefon</th>
+        <th>Email</th>
+        <th>Uwagi</th>
+    </tr>
+    <tr th:each="client : ${clients}">
+        <td th:text="${client.firstName}"></td>
+        <td th:text="${client.lastName}"></td>
+        <td th:text="${client.zipCode}"></td>
+        <td th:text="${client.city}"></td>
+        <td th:text="${client.address}"></td>
+        <td th:text="${client.tel}"></td>
+        <td th:text="${client.email}"></td>
+        <td th:text="${client.comments}"></td>
+        <td>
+            <a th:href="@{/editClient/__${client.id}__}">Edytuj</a>
+            <a th:href="@{/deleteClient/__${client.id}__}">Usuń</a>
+        </td>
+    </tr>
+</table>
+<br>
+<button onclick="location.href='/index'" type="button" class="btn btn-default">Powrót</button>
 </body>
 </html>
