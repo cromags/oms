@@ -1,8 +1,10 @@
 package pl.bw.oms.domain.model;
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -15,9 +17,11 @@ public class Client {
 
     private String firstName;
     private String lastName;
+
     //@NotNull creates database constraint
-    //@NotBlank for Bootstrap validation
+    //@NotBlank for back-end validation
     @NotNull @NotBlank
+    @Pattern(regexp = "[0-9]{2}-[0-9]{3}")
     private String zipCode;
     @NotNull @NotBlank
     private String city;
@@ -25,6 +29,8 @@ public class Client {
     private String address;
     @NotNull @NotBlank
     private String tel;
+
+    @Email
     private String email;
     private String comments;
 

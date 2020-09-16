@@ -37,7 +37,7 @@ public class Starter implements CommandLineRunner {
         System.out.println("elo 1");
 
         //insert client
-        Client client3 = new Client("Leon", "Niemczyk", "01-123", "Warszawa", "Krucza 6A/12", "515-516-515", "leon@niemczyk.pl","klient z apki");
+        Client client3 = new Client("Leon", "Niemczyk", "12-123", "Warszawa", "Krucza 6A/12", "515-516-515", "leon@niemczyk.pl","klient z apki");
         clientRepository.save(client3);
 
         //insert product
