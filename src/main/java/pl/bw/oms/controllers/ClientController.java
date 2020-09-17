@@ -19,9 +19,16 @@ public class ClientController {
         this.clientRepository = clientRepository;
     }
 
+    // *** show client homepage ***
+
+    @RequestMapping(value = {"/clientHome", "/index/clientHome"})
+    public String prepareClientHomePage() {
+        return "clientHome";
+    }
+
     // *** show all clients ***
 
-    @RequestMapping("/clients")
+    @RequestMapping(value = "/clients")
     public String prepareClientsPage(Model model) {
         model.addAttribute("clients", clientRepository.findAll());
         return "clients/list";
