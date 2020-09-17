@@ -1,6 +1,8 @@
 package pl.bw.oms.domain.model;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -11,10 +13,10 @@ public class ProductCategory {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotNull @NotBlank
     private String categoryName;
     private String description;
 
-    //@OneToMany(cascade = CascadeType.ALL)
     @OneToMany
     @JoinColumn(name = "product_category_id")
     Set<Product> products = new HashSet<>();
@@ -25,6 +27,14 @@ public class ProductCategory {
     public ProductCategory(String categoryName, String description){
         this.categoryName = categoryName;
         this.description = description;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getCategoryName() {

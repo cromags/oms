@@ -10,8 +10,15 @@
 </head>
 <body>
 System zarządzania...
-<form th:action="@{/clientHome}" method="get">
-    <button type="submit" class="btn btn-default">Klienci</button>
-</form>
+
+<ul>
+    <li><a th:href="@{/clientHome}">Klienci</a></li>
+    <li><a th:href="@{/productCategorytHome}">Kategorie</a></li>
+</ul>
+
+<!--<form th:action="@{/clientHome}" method="get">-->
+<!--    <button type="submit" class="btn btn-default">Klienci</button>-->
+<!--</form>-->
+
 </body>
 </html>
