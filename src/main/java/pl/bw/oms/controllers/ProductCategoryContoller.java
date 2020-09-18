@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import pl.bw.oms.domain.model.Client;
 import pl.bw.oms.domain.model.ProductCategory;
 import pl.bw.oms.domain.repository.CategoryRepository;
+import pl.bw.oms.domain.repository.ClientRepository;
 
 import javax.validation.Valid;
 import java.util.Optional;
@@ -17,9 +18,11 @@ import java.util.Optional;
 public class ProductCategoryContoller {
 
     private final CategoryRepository categoryRepository;
+    private final ClientRepository clientRepository;
 
-    public ProductCategoryContoller(CategoryRepository categoryRepository) {
+    public ProductCategoryContoller(CategoryRepository categoryRepository, ClientRepository clientRepository) {
         this.categoryRepository = categoryRepository;
+        this.clientRepository = clientRepository;
     }
 
 
@@ -39,7 +42,24 @@ public class ProductCategoryContoller {
     }
 
 
-    //TODO add and edit category
+    //something wrong here vvvvvvvvvvvvvvvvvvvv
+
+    @RequestMapping(value = "/addCategory")
+    public String prepareAddClientPage(Model model) {
+        model.addAttribute("cat", new ProductCategory());
+        return "categories/add";
+    }
+
+    @RequestMapping(value = "/doAddCategory", method = RequestMethod.POST)
+    public String processAddClient(@Valid ProductCategory cat, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            return "categories/add";
+        }
+        categoryRepository.save(cat);
+        return "redirect:/index";
+    }
+
+    // ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
     // *** delete category ***
 
