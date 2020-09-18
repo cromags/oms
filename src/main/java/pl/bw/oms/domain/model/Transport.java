@@ -1,5 +1,7 @@
 package pl.bw.oms.domain.model;
 
+import org.hibernate.validator.constraints.URL;
+
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
@@ -25,6 +27,8 @@ public class Transport {
 
     @Email
     private String email;
+
+    @URL
     private String www;
     private String comments;
 

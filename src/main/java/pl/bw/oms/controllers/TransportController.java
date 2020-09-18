@@ -29,7 +29,7 @@ public class TransportController {
         return "transportHome";
     }
 
-    // *** show all clients ***
+    // *** show all transports ***
 
     @RequestMapping(value = "/transports")
     public String prepareClientsPage(Model model) {
@@ -82,7 +82,7 @@ public class TransportController {
         return "redirect:/index";
     }
 
-    // *** delete client ***
+    // *** delete transport ***
 
     @RequestMapping(value = "/deleteTransport/{id}")
     public String processDeleteTransport(@PathVariable Long id, Model model) {

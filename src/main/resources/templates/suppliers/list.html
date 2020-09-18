@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org" >
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Dostawcy</title>
 
     <link href="../static/css/bootstrap-3.3.4-dist/css/bootstrap.min.css" rel="stylesheet" media="screen"
           th:href="@{/css/bootstrap-3.3.4-dist/css/bootstrap.min.css}"/>
@@ -28,7 +28,7 @@
 
 </head>
 <body>
-<h2>Firmy transportowe (<span style="color: #fe6a00" th:text="${suppliers.size()}"></span>)</h2>
+<h2>Dostawcy (<span style="color: #fe6a00" th:text="${suppliers.size()}"></span>)</h2>
 <table>
     <tr>
         <th>Nazwa</th>
@@ -40,18 +40,18 @@
         <th>www</th>
         <th>Uwagi</th>
     </tr>
-    <tr th:each="transport : ${transports}">
-        <td th:text="${transport.name}"></td>
-        <td th:text="${transport.zipCode}"></td>
-        <td th:text="${transport.city}"></td>
-        <td th:text="${transport.address}"></td>
-        <td th:text="${transport.tel}"></td>
-        <td th:text="${transport.email}"></td>
-        <td th:text="${transport.www}"></td>
-        <td th:text="${transport.comments}"></td>
+    <tr th:each="supplier : ${suppliers}">
+        <td th:text="${supplier.name}"></td>
+        <td th:text="${supplier.zipCode}"></td>
+        <td th:text="${supplier.city}"></td>
+        <td th:text="${supplier.address}"></td>
+        <td th:text="${supplier.tel}"></td>
+        <td th:text="${supplier.email}"></td>
+        <td th:text="${supplier.www}"></td>
+        <td th:text="${supplier.comments}"></td>
         <td>
-            <a th:href="@{/editTransport/__${transport.id}__}">Edytuj</a>
-            <a th:href="@{/deleteTransport/__${transport.id}__}">Usuń</a>
+            <a th:href="@{/editSupplier/__${supplier.id}__}">Edytuj</a>
+            <a th:href="@{/deleteSupplier/__${supplier.id}__}">Usuń</a>
         </td>
     </tr>
 </table>
