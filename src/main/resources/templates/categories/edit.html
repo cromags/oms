@@ -8,9 +8,9 @@
 </head>
 <body>
 <div class="container">
-    <h2>Dodaj kategorię</h2>
+    <h2>Edytuj kategorię</h2>
 
-    <form class="form-horizontal" th:object="${category}" th:action="@{/doAddCategory}" method="post">
+    <form class="form-horizontal" th:object="${category}" th:action="@{/doEditCategory}" method="post">
 
         <div th:if="${#fields.hasErrors('*')}" class="alert alert-danger">
             <p>Błąd</p>
@@ -36,8 +36,14 @@
             </div>
         </div>
 
+        <div class="form-group">
+            <div class="col-sm-10">
+                <input type="hidden" class="form-control" th:field="*{id}" />
+            </div>
+        </div>
+
         <div class="row">
-            <button type="submit" class="btn btn-default">Dodaj</button>
+            <button type="submit" class="btn btn-default">Edytuj</button>
             <button onclick="location.href='/index'" type="button" class="btn btn-default">
                 Anuluj</button>
         </div>

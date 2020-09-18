@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import pl.bw.oms.domain.model.Client;
 import pl.bw.oms.domain.model.ProductCategory;
+import pl.bw.oms.domain.model.Supplier;
 import pl.bw.oms.domain.repository.CategoryRepository;
 import pl.bw.oms.domain.repository.ClientRepository;
 
@@ -18,11 +19,9 @@ import java.util.Optional;
 public class ProductCategoryContoller {
 
     private final CategoryRepository categoryRepository;
-    private final ClientRepository clientRepository;
 
-    public ProductCategoryContoller(CategoryRepository categoryRepository, ClientRepository clientRepository) {
+    public ProductCategoryContoller(CategoryRepository categoryRepository) {
         this.categoryRepository = categoryRepository;
-        this.clientRepository = clientRepository;
     }
 
 
@@ -42,11 +41,13 @@ public class ProductCategoryContoller {
     }
 
 
-    //something wrong here vvvvvvvvvvvvvvvvvvvv
+    //VVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
+
+    // *** add category ***
 
     @RequestMapping(value = "/addCategory")
-    public String prepareAddClientPage(Model model) {
-        model.addAttribute("cat", new ProductCategory());
+    public String prepareAddCategoryPage(Model model) {
+        model.addAttribute("category", new ProductCategory());
         return "categories/add";
     }
 
@@ -59,7 +60,31 @@ public class ProductCategoryContoller {
         return "redirect:/index";
     }
 
-    // ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+    // *** edit category ***
+
+    @RequestMapping(value = "/editCategory/{id}")
+    public String prepareEditCategoryrPage(@PathVariable Long id, Model model) {
+        model.addAttribute("category", categoryRepository.findById(id));
+        return "categories/edit";
+
+    }
+
+    @RequestMapping(value = "/doEditCategory", method = RequestMethod.POST)
+    public String processEditSupplier(@Valid ProductCategory productCategory, BindingResult bindingResult) {
+        Optional<ProductCategory> productCategoryFrom = categoryRepository.findById(productCategory.getId());
+        ProductCategory pc = productCategoryFrom.orElse(null);
+        if (bindingResult.hasErrors() || pc == null) {
+            return "categories/edit";
+        }
+        pc.setCategoryName(productCategory.getCategoryName());
+        pc.setDescription(productCategory.getDescription());
+
+        categoryRepository.save(pc);
+        return "redirect:/index";
+    }
+    /// ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
 
     // *** delete category ***
 
