@@ -28,7 +28,7 @@ public class ProductCategoryContoller {
 
     // *** show productCategory homepage ***
 
-    @RequestMapping(value = {"/productCategorytHome", "/index/productCategorytHome"})
+    @RequestMapping(value = {"/productCategoryHome", "/index/productCategoryHome"})
     public String prepareProductCategoryHomePage() {
         return "productCategoryHome";
     }

@@ -1,6 +1,10 @@
 package pl.bw.oms.domain.model;
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -11,11 +15,15 @@ public class Transport {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotNull @NotBlank
     private String name;
+
     private String zipCode;
     private String city;
     private String address;
     private String tel;
+
+    @Email
     private String email;
     private String www;
     private String comments;

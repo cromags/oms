@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" >
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <link href="../static/css/bootstrap-3.3.4-dist/css/bootstrap.min.css" rel="stylesheet" media="screen"
+          th:href="@{/css/bootstrap-3.3.4-dist/css/bootstrap.min.css}"/>
+
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        th, td {
+            text-align: left;
+            padding: 8px;
+        }
+
+        tr:nth-child(even){background-color: #f2f2f2}
+
+        th {
+            background-color: #fe6a00;
+            color: white;
+        }
+    </style>
+
+</head>
+<body>
+<h2>Firmy transportowe (<span style="color: #fe6a00" th:text="${transports.size()}"></span>)</h2>
+<table>
+    <tr>
+        <th>Nazwa</th>
+        <th>Kod pocztowy</th>
+        <th>Miasto</th>
+        <th>Adres</th>
+        <th>Telefon</th>
+        <th>Email</th>
+        <th>www</th>
+        <th>Uwagi</th>
+    </tr>
+    <tr th:each="transport : ${transports}">
+        <td th:text="${transport.name}"></td>
+        <td th:text="${transport.zipCode}"></td>
+        <td th:text="${transport.city}"></td>
+        <td th:text="${transport.address}"></td>
+        <td th:text="${transport.tel}"></td>
+        <td th:text="${transport.email}"></td>
+        <td th:text="${transport.www}"></td>
+        <td th:text="${transport.comments}"></td>
+        <td>
+            <a th:href="@{/editTransport/__${transport.id}__}">Edytuj</a>
+            <a th:href="@{/deleteTransport/__${transport.id}__}">Usuń</a>
+        </td>
+    </tr>
+</table>
+<br>
+<button onclick="location.href='/index'" type="button" class="btn btn-default">Powrót</button>
+</body>
+</html>
