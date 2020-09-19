@@ -37,8 +37,6 @@ public class OrderMethodController {
         return "orderMethods/list";
     }
 
-    //VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
-
     // *** add new order method ***
 
     @RequestMapping(value = "/addOrderMethod")
@@ -48,15 +46,14 @@ public class OrderMethodController {
     }
 
     @RequestMapping(value = "/doAddOrderMethod", method = RequestMethod.POST)
-    public String processAddClient(@Valid OrderMethod orderMethod, BindingResult bindingResult) {
+    public String processAddOrderMethod(@Valid OrderMethod orderMethod, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
-            return "orderMethods/add";
+            //'method' to solve problem with validation of this data
+            return "redirect:/addOrderMethod";
         }
         orderMethodsRepository.save(orderMethod);
         return "redirect:/index";
     }
-
-    // V^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
     // *** delete orderMethod ***
 

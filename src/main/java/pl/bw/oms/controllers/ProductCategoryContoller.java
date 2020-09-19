@@ -40,9 +40,6 @@ public class ProductCategoryContoller {
         return "categories/list";
     }
 
-
-    //VVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
-
     // *** add category ***
 
     @RequestMapping(value = "/addCategory")
@@ -52,9 +49,10 @@ public class ProductCategoryContoller {
     }
 
     @RequestMapping(value = "/doAddCategory", method = RequestMethod.POST)
-    public String processAddClient(@Valid ProductCategory cat, BindingResult bindingResult) {
+    public String processAddCategory(@Valid ProductCategory cat, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
-            return "categories/add";
+            //'method' to solve problem with validation of this data
+            return "redirect:/addCategory";
         }
         categoryRepository.save(cat);
         return "redirect:/index";
@@ -71,11 +69,12 @@ public class ProductCategoryContoller {
     }
 
     @RequestMapping(value = "/doEditCategory", method = RequestMethod.POST)
-    public String processEditSupplier(@Valid ProductCategory productCategory, BindingResult bindingResult) {
+    public String processEditCategory(@Valid ProductCategory productCategory, BindingResult bindingResult) {
         Optional<ProductCategory> productCategoryFrom = categoryRepository.findById(productCategory.getId());
         ProductCategory pc = productCategoryFrom.orElse(null);
         if (bindingResult.hasErrors() || pc == null) {
-            return "categories/edit";
+            //'method' to solve problem with validation of this data
+            return "info/categoryvalidation";
         }
         pc.setCategoryName(productCategory.getCategoryName());
         pc.setDescription(productCategory.getDescription());
@@ -83,8 +82,6 @@ public class ProductCategoryContoller {
         categoryRepository.save(pc);
         return "redirect:/index";
     }
-    /// ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
 
     // *** delete category ***
 
