@@ -3,10 +3,7 @@ package pl.bw.oms.domain.model;
 import org.hibernate.validator.constraints.URL;
 
 import javax.persistence.*;
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Pattern;
+import javax.validation.constraints.*;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -28,8 +25,10 @@ public class Transport {
     @Email
     private String email;
 
-    @URL
+    // @Pattern(regexp = "^(?:[\\w-]+\\.)+[a-z]{2,10}$")
     private String www;
+
+    @Column(length = 500) @Size(max = 500)
     private String comments;
 
     @OneToMany

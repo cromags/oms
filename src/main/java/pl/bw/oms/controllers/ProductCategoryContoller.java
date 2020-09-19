@@ -53,6 +53,7 @@ public class ProductCategoryContoller {
         if (bindingResult.hasErrors()) {
             //'method' to solve problem with validation of this data
             return "redirect:/addCategory";
+
         }
         categoryRepository.save(cat);
         return "redirect:/index";

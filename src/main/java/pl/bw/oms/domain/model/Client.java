@@ -1,10 +1,7 @@
 package pl.bw.oms.domain.model;
 
 import javax.persistence.*;
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Pattern;
+import javax.validation.constraints.*;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -32,6 +29,9 @@ public class Client {
 
     @Email
     private String email;
+    //@Column creates database constraint
+    //@Size for back-end validation
+    @Column(length = 500) @Size(max = 500)
     private String comments;
 
     @OneToMany

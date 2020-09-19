@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org" >
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Firmy transportowe</title>
 
     <link href="../static/css/bootstrap-3.3.4-dist/css/bootstrap.min.css" rel="stylesheet" media="screen"
           th:href="@{/css/bootstrap-3.3.4-dist/css/bootstrap.min.css}"/>
@@ -28,7 +28,7 @@
 
 </head>
 <body>
-<h2>Firmy transportowe (<span style="color: #fe6a00" th:text="${suppliers.size()}"></span>)</h2>
+<h2>Firmy transportowe (<span style="color: #fe6a00" th:text="${transports.size()}"></span>)</h2>
 <table>
     <tr>
         <th>Nazwa</th>
@@ -46,8 +46,9 @@
         <td th:text="${transport.city}"></td>
         <td th:text="${transport.address}"></td>
         <td th:text="${transport.tel}"></td>
-        <td th:text="${transport.email}"></td>
-        <td th:text="${transport.www}"></td>
+        <td><a th:href="@{mailto:__${transport.email}__}"><span th:text="${transport.email}"></span></a></td>
+<!--        Protocol-relative URLs -> @{// <-  -->
+        <td><a th:href="@{//__${transport.www}__}"><span th:text="${transport.www}"></span></a></td>
         <td th:text="${transport.comments}"></td>
         <td>
             <a th:href="@{/editTransport/__${transport.id}__}">Edytuj</a>

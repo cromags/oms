@@ -46,8 +46,8 @@
         <td th:text="${supplier.city}"></td>
         <td th:text="${supplier.address}"></td>
         <td th:text="${supplier.tel}"></td>
-        <td th:text="${supplier.email}"></td>
-        <td th:text="${supplier.www}"></td>
+        <td><a th:href="@{mailto:__${supplier.email}__}"><span th:text="${supplier.email}"></span></a></td>
+        <td><a th:href="@{//__${supplier.www}__}"><span th:text="${supplier.www}"></span></a></td>
         <td th:text="${supplier.comments}"></td>
         <td>
             <a th:href="@{/editSupplier/__${supplier.id}__}">Edytuj</a>

@@ -67,7 +67,7 @@ public class TransportController {
     public String processEditTransport(@Valid Transport transport, BindingResult bindingResult) {
         Optional<Transport> transportFrom = transportRepository.findById(transport.getId());
         Transport t = transportFrom.orElse(null);
-        if (bindingResult.hasErrors() || t == null) {
+        if(bindingResult.hasErrors() || t == null) {
             return "transport/edit";
         }
         t.setName(transport.getName());

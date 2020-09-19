@@ -3,6 +3,7 @@ package pl.bw.oms.domain.model;
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -15,6 +16,8 @@ public class ProductCategory {
 
     @NotNull @NotBlank
     private String categoryName;
+
+    @Column(length = 500) @Size(max = 500)
     private String description;
 
     @OneToMany
