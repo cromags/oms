@@ -23,9 +23,9 @@ insert into order_method (id, order_method_name) values (4, 'tel');
 insert into order_method (id, order_method_name) values (5, 'mail');
 
 --products
-insert into product(id, name, supplier_price, my_price, description, supplier_id, product_category_id) values (1, 'szafa fi', 480, 620, 'biała / sonoma / z lustrem', 1, 1);
-insert into product(id, name, supplier_price, my_price, description, supplier_id, product_category_id) values (2, 'krzesło 02', 85, 110, 'tapicerowane', 2, 2);
-insert into product(id, name, supplier_price, my_price, description, supplier_id, product_category_id) values (3, 'szafa penelo', 610, 800, 'z lustrami', 1, 1);
+insert into product(id, product_name, supplier_price, my_price, description, supplier_id, product_category_id) values (1, 'szafa fi', 480, 620, 'biała / sonoma / z lustrem', 1, 1);
+insert into product(id, product_name, supplier_price, my_price, description, supplier_id, product_category_id) values (2, 'krzesło 02', 85, 110, 'tapicerowane', 2, 2);
+insert into product(id, product_name, supplier_price, my_price, description, supplier_id, product_category_id) values (3, 'szafa penelo', 610, 800, 'z lustrami', 1, 1);
 
 --orders and details
 insert into client_order(id, date_of_order_to_transport, date_of_send_to_client, comments, client_id, transport_id) values (1, '2020-09-01', '2020-09-10','no comments', 1, 1);

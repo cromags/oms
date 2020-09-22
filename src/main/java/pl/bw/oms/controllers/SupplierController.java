@@ -6,20 +6,26 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import pl.bw.oms.domain.model.Product;
 import pl.bw.oms.domain.model.Supplier;
 import pl.bw.oms.domain.model.Transport;
+import pl.bw.oms.domain.repository.ProductRepository;
 import pl.bw.oms.domain.repository.SupplierRepository;
 
 import javax.validation.Valid;
+import java.util.List;
 import java.util.Optional;
 
 @Controller
 public class SupplierController {
 
     private final SupplierRepository supplierRepository;
+    private final ProductRepository productRepository;
 
-    public SupplierController(SupplierRepository supplierRepository){
+    public SupplierController(SupplierRepository supplierRepository,
+                              ProductRepository productRepository){
         this.supplierRepository = supplierRepository;
+        this.productRepository = productRepository;
     }
 
     // *** show supplier homepage ***
@@ -92,6 +98,14 @@ public class SupplierController {
         if (s == null) {
             return "info/notfound";
         }
+
+        List<Product> products =  productRepository.findAll();
+        for (int i = 0; i < products.size(); i++){
+            if(products.get(i).getSupplier().getId() == s.getId()){
+                return "info/cannotdelete";
+            }
+        }
+
         supplierRepository.delete(s);
         return "redirect:/suppliers";
     }

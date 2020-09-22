@@ -20,7 +20,7 @@
         <div class="form-group" th:class="${#fields.hasErrors('orderMethodName')} ? 'form-group has-error' : 'form-group'" >
             <label class="col-sm-2 control-label">Nazwa:</label>
             <div class="col-sm-10">
-                <input type="text" class="form-control" th:field="*{orderMethodName}" th:errorclass="has-error" />
+                <input type="text" class="form-control" th:field="*{orderMethodName}" th:errorclass="has-error"  required="required" />
                 <span class="help-block" th:if="${#fields.hasErrors('orderMethodName')}">
                     <p th:text="${'Pole wymagane'}"></p>
                 </span>

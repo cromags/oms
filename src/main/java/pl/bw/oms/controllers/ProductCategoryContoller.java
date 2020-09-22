@@ -7,21 +7,27 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import pl.bw.oms.domain.model.Client;
+import pl.bw.oms.domain.model.Product;
 import pl.bw.oms.domain.model.ProductCategory;
 import pl.bw.oms.domain.model.Supplier;
 import pl.bw.oms.domain.repository.CategoryRepository;
 import pl.bw.oms.domain.repository.ClientRepository;
+import pl.bw.oms.domain.repository.ProductRepository;
 
 import javax.validation.Valid;
+import java.util.List;
 import java.util.Optional;
 
 @Controller
 public class ProductCategoryContoller {
 
     private final CategoryRepository categoryRepository;
+    private final ProductRepository productRepository;
 
-    public ProductCategoryContoller(CategoryRepository categoryRepository) {
+    public ProductCategoryContoller(CategoryRepository categoryRepository,
+                                    ProductRepository productRepository) {
         this.categoryRepository = categoryRepository;
+        this.productRepository = productRepository;
     }
 
 
@@ -94,6 +100,14 @@ public class ProductCategoryContoller {
         if (pc == null) {
             return "info/notfound";
         }
+
+        List<Product> products =  productRepository.findAll();
+        for (int i = 0; i < products.size(); i++){
+            if(products.get(i).getProductCategory().getId() == pc.getId()){
+                return "info/cannotdelete";
+            }
+        }
+
         categoryRepository.delete(pc);
         return "redirect:/categories";
     }

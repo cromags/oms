@@ -78,5 +78,7 @@ public class ProductCategory {
     public int hashCode() {
         return id != null ? id.hashCode() : 0;
     }
+
+
 }
 

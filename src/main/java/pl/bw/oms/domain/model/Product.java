@@ -1,6 +1,9 @@
 package pl.bw.oms.domain.model;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.math.BigDecimal;
 import java.util.HashSet;
 import java.util.Set;
@@ -12,9 +15,12 @@ public class Product {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String name;
+    @NotNull @NotBlank
+    private String productName;
     private BigDecimal supplierPrice;
     private BigDecimal myPrice;
+
+    @Column(length = 500) @Size(max = 500)
     private String description;
 
     @ManyToOne
@@ -30,8 +36,8 @@ public class Product {
     public Product() {
     }
 
-    public Product(String name, BigDecimal supplierPrice, BigDecimal myPrice, String description, Supplier supplier, ProductCategory productCategory) {
-        this.name = name;
+    public Product(String productName, BigDecimal supplierPrice, BigDecimal myPrice, String description, Supplier supplier, ProductCategory productCategory) {
+        this.productName = productName;
         this.supplierPrice = supplierPrice;
         this.myPrice = myPrice;
         this.description = description;
@@ -39,12 +45,28 @@ public class Product {
         this.productCategory = productCategory;
     }
 
-    public String getName() {
-        return name;
+    public Long getId() {
+        return id;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Set<OrderDetails> getOrderDetails() {
+        return orderDetails;
+    }
+
+    public void setOrderDetails(Set<OrderDetails> orderDetails) {
+        this.orderDetails = orderDetails;
+    }
+
+    public String getProductName() {
+        return productName;
+    }
+
+    public void setProductName(String name) {
+        this.productName = name;
     }
 
     public BigDecimal getSupplierPrice() {
@@ -100,6 +122,20 @@ public class Product {
     @Override
     public int hashCode() {
         return id != null ? id.hashCode() : 0;
+    }
+
+    @Override
+    public String toString() {
+        return "Product{" +
+                "id=" + id +
+                ", name='" + productName + '\'' +
+                ", supplierPrice=" + supplierPrice +
+                ", myPrice=" + myPrice +
+                ", description='" + description + '\'' +
+                ", supplier=" + supplier +
+                ", productCategory=" + productCategory +
+                ", orderDetails=" + orderDetails +
+                '}';
     }
 }
 

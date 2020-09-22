@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" >
+<head>
+    <meta charset="UTF-8">
+    <title>Produkty</title>
+
+    <link href="../static/css/bootstrap-3.3.4-dist/css/bootstrap.min.css" rel="stylesheet" media="screen"
+          th:href="@{/css/bootstrap-3.3.4-dist/css/bootstrap.min.css}"/>
+
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        th, td {
+            text-align: left;
+            padding: 8px;
+        }
+
+        tr:nth-child(even){background-color: #f2f2f2}
+
+        th {
+            background-color: #fe6a00;
+            color: white;
+        }
+    </style>
+
+</head>
+<body>
+<h2>Produkty (<span style="color: #fe6a00" th:text="${products.size()}"></span>)</h2>
+<table>
+    <tr>
+        <th>Nazwa</th>
+        <th>Cena dostawcy</th>
+        <th>Nasza cena</th>
+        <th>Dostawca</th>
+        <th>Kategoria</th>
+        <th>Opis produktu</th>
+    </tr>
+    <tr th:each="product : ${products}">
+        <td th:text="${product.productName}"></td>
+        <td th:text="${product.supplierPrice}"></td>
+        <td th:text="${product.myPrice}"></td>
+        <td th:text="${product.supplier.name}"></td>
+        <td th:text="${product.productCategory.categoryName}"></td>
+        <td th:text="${product.description}"></td>
+        <td>
+            <a th:href="@{/editProduct/__${product.id}__}">Edytuj</a>
+            <a th:href="@{/deleteProduct/__${product.id}__}">Usuń</a>
+        </td>
+    </tr>
+</table>
+<br>
+<button onclick="location.href='/index'" type="button" class="btn btn-default">Powrót</button>
+</body>
+</html>
