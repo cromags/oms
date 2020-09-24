@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en"  xmlns:th="http://www.thymeleaf.org" >
+<head>
+    <meta charset="UTF-8">
+    <title>Dodaj zamówienie</title>
+    <link href="../static/css/bootstrap-3.3.4-dist/css/bootstrap.min.css" rel="stylesheet" media="screen"
+          th:href="@{/css/bootstrap-3.3.4-dist/css/bootstrap.min.css}"/>
+</head>
+<body>
+<div class="container">
+    <h2>Dodaj zamówienie (klient, forma zamówienia)</h2>
+
+    <form class="form-horizontal" th:action="@{/chooseProducts}" method="post">
+
+        <div class="form-group">
+            <label class="col-sm-2 control-label">Klient:</label>
+            <div class="col-sm-10">
+                <select class="form-control" th:field="*{clientorder.client}"  >
+                    <option th:each="client : ${clients}" th:value="${client.id}" th:text="${client.firstName+' ' + client.lastName}"></option>
+                </select>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-sm-2 control-label">Forma zamówienia:</label>
+            <div class="col-sm-10">
+                <select class="form-control" th:field="*{orderdetails.orderMethod}"  >
+                    <option th:each="method : ${methods}" th:value="${method.id}" th:text="${method.orderMethodName}"></option>
+                </select>
+            </div>
+        </div>
+
+        <div class="form-group"  >
+            <label class="col-sm-2 control-label">Data zamówienia:</label>
+            <div class="col-sm-10">
+                <input type="date" class="form-control" th:field="*{orderdetails.dateOfOrderByClient}">
+                </input>
+            </div>
+        </div>
+
+
+        <div class="row">
+            <button type="submit" class="btn btn-default">Dalej</button>
+            <button onclick="location.href='/index'" type="button" class="btn btn-default">
+                Anuluj</button>
+        </div>
+    </form>
+</div>
+</body>
+</html>
