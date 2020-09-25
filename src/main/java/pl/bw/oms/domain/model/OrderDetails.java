@@ -30,6 +30,14 @@ public class OrderDetails {
     public OrderDetails() {
     }
 
+    public OrderDetails(ClientOrder clientOrder, Product product, int quantity, LocalDate dateOfOrderByClient, OrderMethod orderMethod) {
+        this.clientOrder = clientOrder;
+        this.product = product;
+        this.quantity = quantity;
+        this.dateOfOrderByClient = dateOfOrderByClient;
+        this.orderMethod = orderMethod;
+    }
+
     public Long getId() {
         return id;
     }

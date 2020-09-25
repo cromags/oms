@@ -36,6 +36,9 @@ insert into client_order(id, date_of_order_to_transport, date_of_send_to_client,
 insert into order_details(id, client_order_id, product_id, quantity, date_of_order_by_client, order_method_id) values (3, 2, 2, 4, '2020-09-02', 2);
 insert into order_details(id, client_order_id, product_id, quantity, date_of_order_by_client, order_method_id) values (4, 2, 1, 1, '2020-09-02', 2);
 
+insert into client_order(id, date_of_order_to_transport, date_of_send_to_client, comments, client_id, transport_id) values (3, null, null,'nówka', 2, null);
+insert into order_details(id, client_order_id, product_id, quantity, date_of_order_by_client, order_method_id) values (5, 3, 2, 15, null, 1);
+insert into order_details(id, client_order_id, product_id, quantity, date_of_order_by_client, order_method_id) values (6, 3, 1, 15, null, 1);
 
 
 

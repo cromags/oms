@@ -1,6 +1,9 @@
 package pl.bw.oms.domain.model;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Set;
@@ -13,8 +16,11 @@ public class ClientOrder {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private LocalDateTime dateOfOrderToTransport;
-    private LocalDateTime dateOfSendToClient;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private LocalDate dateOfOrderToTransport;
+
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private LocalDate dateOfSendToClient;
     private String comments;
 
     @ManyToOne
@@ -27,10 +33,13 @@ public class ClientOrder {
     @JoinColumn(name = "client_order_id")
     Set<OrderDetails> orderDetails = new HashSet<>();
 
-    public ClientOrder(LocalDateTime dateOfOrderToTransport, LocalDateTime dateOfSendToClient, String comments) {
+
+    public ClientOrder(LocalDate dateOfOrderToTransport, LocalDate dateOfSendToClient, String comments, Client client, Transport transport) {
         this.dateOfOrderToTransport = dateOfOrderToTransport;
         this.dateOfSendToClient = dateOfSendToClient;
         this.comments = comments;
+        this.client = client;
+        this.transport = transport;
     }
 
     public ClientOrder() {
@@ -44,19 +53,19 @@ public class ClientOrder {
         this.id = id;
     }
 
-    public LocalDateTime getDateOfOrderToTransport() {
+    public LocalDate getDateOfOrderToTransport() {
         return dateOfOrderToTransport;
     }
 
-    public void setDateOfOrderToTransport(LocalDateTime dateOfOrderToTransport) {
+    public void setDateOfOrderToTransport(LocalDate dateOfOrderToTransport) {
         this.dateOfOrderToTransport = dateOfOrderToTransport;
     }
 
-    public LocalDateTime getDateOfSendToClient() {
+    public LocalDate getDateOfSendToClient() {
         return dateOfSendToClient;
     }
 
-    public void setDateOfSendToClient(LocalDateTime dateOfSendToClient) {
+    public void setDateOfSendToClient(LocalDate dateOfSendToClient) {
         this.dateOfSendToClient = dateOfSendToClient;
     }
 

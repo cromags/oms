@@ -29,8 +29,9 @@ public class Product {
     @ManyToOne
     private ProductCategory productCategory;
 
-    @OneToMany
+    //if no fetch, LazyInitializationException occured
     @JoinColumn(name = "product_id")
+    @OneToMany(fetch = FetchType.EAGER)
     Set<OrderDetails> orderDetails = new HashSet<>();
 
     public Product() {

@@ -34,7 +34,7 @@ public class Client {
     @Column(length = 500) @Size(max = 500)
     private String comments;
 
-    @OneToMany
+    @OneToMany(fetch = FetchType.EAGER)
     @JoinColumn(name = "client_id")
     Set<ClientOrder> clientOrders = new HashSet<>();
 
