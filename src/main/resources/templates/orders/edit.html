@@ -2,22 +2,15 @@
 <html lang="en"  xmlns:th="http://www.thymeleaf.org" >
 <head>
     <meta charset="UTF-8">
-    <title>Dodaj zamówienie</title>
+    <title>Podgląd/edycja zamówienia</title>
     <link href="../static/css/bootstrap-3.3.4-dist/css/bootstrap.min.css" rel="stylesheet" media="screen"
           th:href="@{/css/bootstrap-3.3.4-dist/css/bootstrap.min.css}"/>
 </head>
 <body>
 <div class="container">
-    <h2>Dodaj zamówienie (uwagi)</h2>
+    <h2>Podgląd/edycja zamówienia</h2>
 
-    <form class="form-horizontal" th:action="@{/tkankYou}" method="post">
-
-        <div class="form-group">
-            <label class="col-sm-2 control-label">Uwagi:</label>
-            <div class="col-sm-10">
-                <textarea class="form-control" th:field="*{clientorder.comments}" />
-            </div>
-        </div>
+    <form class="form-horizontal" th:action="@{/doEditOrder}" method="post">
 
         <div class="form-group">
             <label class="col-sm-2 control-label">Firma transportowa:</label>
@@ -45,9 +38,15 @@
             </div>
         </div>
 
+        <div class="form-group">
+            <div class="col-sm-10">
+                <input type="hidden" class="form-control" th:field="*{clientorder.id}" />
+            </div>
+        </div>
+
 
         <div class="row">
-            <button type="submit" class="btn btn-default">Dalej</button>
+            <button type="submit" class="btn btn-default">Edytuj</button>
             <button onclick="location.href='/index'" type="button" class="btn btn-default">
                 Anuluj</button>
         </div>

@@ -11,14 +11,14 @@
         table {
             border-collapse: collapse;
             width: 100%;
+
         }
 
         th, td {
             text-align: left;
             padding: 8px;
+            border: 1px solid black;
         }
-
-        tr:nth-child(even){background-color: #f2f2f2}
 
         th {
             background-color: #fe6a00;
@@ -41,17 +41,19 @@
     <tr th:each="order : ${orders}">
 
         <td th:text="${order.getOrderDetails().iterator().next().dateOfOrderByClient}"></td>
-        <td th:utext="${'<strong>' + order.client.zipCode+ ' ' +order.client.city + '</strong></br>' + order.client.address + '</br>' + order.client.tel}"></td>
-        <td th:text="${order.getOrderDetails().iterator().next().product.supplier.name}"></td>
-        <td th:text="${order.getOrderDetails().iterator().next().product.productName}"></td>
-        <td th:text="${order.getOrderDetails().iterator().next().quantity}"></td>
+        <td th:style = "${order.transport != null} ? 'background: #aecf00' : 'background: white'" th:utext="${'<strong>' + order.client.zipCode+ ' ' +order.client.city + '</strong></br>' + order.client.address + '</br>' + order.client.tel}"></td>
+        <td th:style = "${order.dateOfOrderToTransport != null} ? 'background: #aecf00' : 'background: white'" th:text="${order.getOrderDetails().iterator().next().product.supplier.name}"></td>
+        <td th:style = "${order.dateOfOrderToTransport != null} ? 'background: #aecf00' : 'background: white'" th:text="${order.getOrderDetails().iterator().next().product.productName}"></td>
+        <td th:style = "${order.dateOfOrderToTransport != null} ? 'background: #aecf00' : 'background: white'" th:text="${order.getOrderDetails().iterator().next().quantity}"></td>
 
-        <td th:text="${order.getOrderDetails().iterator().next().product.myPrice * order.getOrderDetails().iterator().next().quantity}"></td>
+        <td th:style = "${order.dateOfSendToClient != null} ? 'background: #aecf00' : 'background: white'" th:text="${order.getOrderDetails().iterator().next().product.myPrice * order.getOrderDetails().iterator().next().quantity}"></td>
 
         <td>
-<!--            <a th:href="@{/editClient/__${client.id}__}">Edytuj</a>-->
+            <a th:href="@{/editOrder/__${order.id}__}">Edytuj</a>
 <!--            <a th:href="@{/deleteClient/__${client.id}__}">Usuń</a>-->
         </td>
+
+
     </tr>
 </table>
 <br>
