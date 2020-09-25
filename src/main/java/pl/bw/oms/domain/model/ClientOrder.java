@@ -93,6 +93,14 @@ public class ClientOrder {
         this.transport = transport;
     }
 
+    public Set<OrderDetails> getOrderDetails() {
+        return orderDetails;
+    }
+
+    public void setOrderDetails(Set<OrderDetails> orderDetails) {
+        this.orderDetails = orderDetails;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

@@ -78,6 +78,8 @@ public class OrderDetails {
         this.dateOfOrderByClient = dateOfOrderByClient;
     }
 
+
+
     public OrderMethod getOrderMethod() {
         return orderMethod;
     }

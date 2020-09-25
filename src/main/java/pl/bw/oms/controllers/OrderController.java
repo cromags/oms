@@ -128,4 +128,14 @@ public class OrderController {
 
         return "redirect:/index";
     }
+
+    // *** show all orders ***
+
+    @RequestMapping(value = "/orders")
+    public String prepareOrdersPage(Model model) {
+        model.addAttribute("orders", orderRepository.findAll());
+        model.addAttribute("details", detailsRepository.findAll());
+
+        return "orders/list";
+    }
 }
